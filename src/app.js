@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-import testRoute from './routes/testRoute.js';
+import pollRoute from './routes/pollRoute.js';
 
 export const server = express();
 server.use(express.json());
 server.use(cors());
 
-server.use([testRoute]);
+server.use([pollRoute]);
 
 server.listen(process.env.PORT, () => {
   console.log(`Servidor iniciado na porta: ${process.env.PORT}`);

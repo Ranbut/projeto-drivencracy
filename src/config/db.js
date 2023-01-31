@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoClient = new MongoClient(process.env.MONGO_URI);
+const mongoClient = new MongoClient(process.env.URL);
 
 let db;
 
@@ -15,4 +15,4 @@ try{
     console.log(`Erro ao conectar ao MongoDB: ${err}`);
 };
 
-export const testCollection = db.collection("test");
+export const pollsCollection = db.collection("polls");
