@@ -24,7 +24,7 @@ export async function PostPoll (req, res) {
         return dayjs(date, dateFormat).format(dateFormat) === date;
       }
 
-    if(!dateFormatIsValid(expireAt) && !pollDate) return res.status(422).send("Data de expiração da enquete não é valido.");
+    if(!dateFormatIsValid(expireAt) && expireAt) return res.status(422).send("Data de expiração da enquete não é valido.");
 
     if(dateIsOld(expireAt)) return res.status(422).send("Data de expiração da enquete é antiga.");
 
