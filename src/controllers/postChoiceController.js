@@ -19,7 +19,7 @@ export async function PostChoice (req, res) {
 
     if (dayjs().isAfter(dayjs(pollVerify.expireAt))) return res.status(403).send("Enquete expirada.");
 
-    const id = v4uuid();
+    const id = v4uuid().replaceAll('-', '');
     const choice = {
         _id: id,
         title: title,

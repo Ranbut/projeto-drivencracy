@@ -29,7 +29,7 @@ export async function PostPoll (req, res) {
 
     if(dateIsOld(expireAt)) return res.status(422).send("Data de expiração da enquete é antiga.");
 
-    const id = v4uuid();
+    const id = v4uuid().replaceAll('-', '');
     const newPoll = { _id: id, title: title, expireAt: pollDate };
 
     try{
