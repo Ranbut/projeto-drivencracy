@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoClient = new MongoClient(process.env.MONGO_URI);
+const mongoClient = new MongoClient(process.env.URL);
 
 let db;
 
@@ -16,3 +16,4 @@ try{
 };
 
 export const pollsCollection = db.collection("polls");
+export const choicesCollection = db.collection("choices");

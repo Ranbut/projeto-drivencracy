@@ -1,4 +1,5 @@
 import {pollsCollection} from '../config/db.js';
+import { v4 as v4uuid } from 'uuid';
 import dayjs from 'dayjs';
 
 export async function PostPoll (req, res) {
@@ -28,7 +29,8 @@ export async function PostPoll (req, res) {
 
     if(dateIsOld(expireAt)) return res.status(422).send("Data de expiração da enquete é antiga.");
 
-    const newPoll = { title: title, expireAt: pollDate };
+    const id = v4uuid();
+    const newPoll = { _id: id, title: title, expireAt: pollDate };
 
     try{
         await pollsCollection.insertOne(newPoll);    
