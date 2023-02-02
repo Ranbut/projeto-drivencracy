@@ -32,6 +32,7 @@ export async function PostChoice (req, res) {
 
     }
     catch(err){
+        console.log(err);
         res.status(500).send("Algo deu errado no servidor,\ntente novamente mais tarde", err);
     }
 
