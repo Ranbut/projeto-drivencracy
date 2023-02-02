@@ -8,6 +8,6 @@ export async function GetPoll (req, res) {
     }
     
     catch(err){
-        return res.status(404).send("Nenhuma enquente achado.");
+        return res.status(404).send("Nenhuma enquente achado.", err);
     }
 }

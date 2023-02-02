@@ -11,7 +11,7 @@ export async function PostPoll (req, res) {
     try{
         let pollDate = expireAt;
     
-        if (!title) return res.status(422).send("Título da enquete não pode ser vazio.");
+        if (!title) return res.status(422).send("Título da enquete não pode ser vazio.", err);
     
         if (!expireAt){
             const today = new Date();
