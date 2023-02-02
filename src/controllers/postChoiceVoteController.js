@@ -8,18 +8,18 @@ export async function PostVote (req, res) {
 
     const date = dayjs().format('YYYY-MM-DD HH:mm')
 
-    const choice = await choicesCollection.findOne({ _id: reqID });
-
-    if (!choice) return res.status(404).send("Escolha da enquente não foi encontrada.");
-
-    const id = v4uuid().replaceAll('-', '');
-    const objVote = {
-        _id: id,
-        createdAt: date, 
-        choiceId: choice._id
-    }
-
     try{
+        const choice = await choicesCollection.findOne({ _id: reqID });
+
+        if (!choice) return res.status(404).send("Escolha da enquente não foi encontrada.");
+    
+        const id = v4uuid().replaceAll('-', '');
+        const objVote = {
+            _id: id,
+            createdAt: date, 
+            choiceId: choice._id
+        }
+        
         await votesCollection.insertOne(objVote);    
         res.sendStatus(201);
     }

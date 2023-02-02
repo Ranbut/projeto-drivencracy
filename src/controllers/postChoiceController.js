@@ -3,9 +3,10 @@ import { v4 as v4uuid } from 'uuid';
 import dayjs from 'dayjs';
 
 export async function PostChoice (req, res) {
-
+    
     const { title, pollID } = req.body;
 
+    try{
     if (!title) return res.status(422).send("Título não pode ser uma string vazia.");
 
     const pollVerify = await pollsCollection.findOne({ _id: pollID});
@@ -26,9 +27,9 @@ export async function PostChoice (req, res) {
         pollId: pollID
     }
 
-    try{
-        await choicesCollection.insertOne(choice);    
-        res.sendStatus(201);
+    await choicesCollection.insertOne(choice);    
+    res.sendStatus(201);
+
     }
     catch(err){
         res.status(500).send("Algo deu errado no servidor,\ntente novamente mais tarde");

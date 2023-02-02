@@ -2,9 +2,8 @@ import {pollsCollection} from '../config/db.js';
 
 export async function GetPoll (req, res) {
 
-    const polls = await pollsCollection.find().toArray();
-
     try{
+        const polls = await pollsCollection.find().toArray();
         return res.status(200).send(polls.reverse());
     }
     
