@@ -31,13 +31,7 @@ export async function PostPoll (req, res) {
 
     const id = v4uuid().replaceAll('-', '');
     const newPoll = { _id: id, title: title, expireAt: pollDate };
-
-    try{
-        await pollsCollection.insertOne(newPoll);    
-        res.sendStatus(201);
-    }
-    catch(err){
-        res.status(500).send("Algo deu errado no servidor,\ntente novamente mais tarde");
-    }
-
+    
+    await pollsCollection.insertOne(newPoll);    
+    res.sendStatus(201);
 }
