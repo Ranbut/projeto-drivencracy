@@ -37,8 +37,7 @@ export async function PostPoll (req, res) {
         res.sendStatus(201);
     }
     catch(err){
-        console.log(err);
-        res.status(500).send("Algo deu errado no servidor,\ntente novamente mais tarde");
+        res.status(500).send(err);
     }
 
 }

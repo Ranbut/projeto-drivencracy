@@ -28,6 +28,6 @@ export async function GetResult (req, res) {
         res.status(200).send(objRes); 
     }
     catch(err){
-        res.status(500).send("Algo deu errado no servidor,\ntente novamente mais tarde", err);
+        res.status(500).send(err);
     }
 }
