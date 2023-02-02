@@ -24,8 +24,7 @@ export async function PostVote (req, res) {
         res.sendStatus(201);
     }
     catch(err){
-        console.log(err);
-        res.status(500).send("Algo deu errado no servidor,\ntente novamente mais tarde", err);
+        res.status(500).send(err);
     }
 
 }
