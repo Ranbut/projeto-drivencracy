@@ -4,11 +4,11 @@ import { v4 as v4uuid } from 'uuid';
 
 export async function PostVote (req, res) {
 
-    const reqID = req.params.id;
-
-    const date = dayjs().format('YYYY-MM-DD HH:mm')
-
     try{
+        const reqID = req.params.id;
+
+        const date = dayjs().format('YYYY-MM-DD HH:mm')
+        
         const choice = await choicesCollection.findOne({ _id: reqID });
 
         if (!choice) return res.status(404).send("Escolha da enquente não foi encontrada.");

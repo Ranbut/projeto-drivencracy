@@ -2,9 +2,9 @@ import { pollsCollection, choicesCollection, votesCollection } from '../config/d
 
 export async function GetResult (req, res) {
 
-    const reqID = req.params.id;
-
     try{
+        const reqID = req.params.id;
+
         const poll = await pollsCollection.findOne({ _id: reqID });
 
         if (!poll) return res.status(404).send("Enquete não encontrada.");

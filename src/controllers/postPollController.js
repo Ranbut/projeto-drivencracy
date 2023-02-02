@@ -3,12 +3,11 @@ import { v4 as v4uuid } from 'uuid';
 import dayjs from 'dayjs';
 
 export async function PostPoll (req, res) {
-
-    const { title, expireAt } = req.body;
-
-    const dateFormat = 'YYYY-MM-DD HH:mm'
-
     try{
+        const { title, expireAt } = req.body;
+
+        const dateFormat = 'YYYY-MM-DD HH:mm'    
+
         let pollDate = expireAt;
     
         if (!title) return res.status(422).send("Título da enquete não pode ser vazio.", err);

@@ -4,31 +4,31 @@ import dayjs from 'dayjs';
 
 export async function PostChoice (req, res) {
     
-    const { title, pollID } = req.body;
-
     try{
-    if (!title) return res.status(422).send("Título não pode ser uma string vazia.");
+        const { title, pollID } = req.body;
 
-    const pollVerify = await pollsCollection.findOne({ _id: pollID});
+        if (!title) return res.status(422).send("Título não pode ser uma string vazia.");
 
-    if (!pollVerify) return res.status(404).send("Enquete não encontrada.");
+        const pollVerify = await pollsCollection.findOne({ _id: pollID});
 
-    const choiceVerify = await choicesCollection.findOne({ title: title});
+        if (!pollVerify) return res.status(404).send("Enquete não encontrada.");
 
-    if(choiceVerify)
-        if (title === choiceVerify.title) return res.status(409).send("Já existe escolha com o mesmo título.");
+        const choiceVerify = await choicesCollection.findOne({ title: title});
 
-    if (dayjs().isAfter(dayjs(pollVerify.expireAt))) return res.status(403).send("Enquete expirada.");
+        if(choiceVerify)
+            if (title === choiceVerify.title) return res.status(409).send("Já existe escolha com o mesmo título.");
 
-    const id = v4uuid().replaceAll('-', '');
-    const choice = {
-        _id: id,
-        title: title,
-        pollId: pollID
-    }
+        if (dayjs().isAfter(dayjs(pollVerify.expireAt))) return res.status(403).send("Enquete expirada.");
 
-    await choicesCollection.insertOne(choice);    
-    res.sendStatus(201);
+        const id = v4uuid().replaceAll('-', '');
+        const choice = {
+            _id: id,
+            title: title,
+            pollId: pollID
+        }
+
+        await choicesCollection.insertOne(choice);    
+        res.sendStatus(201);
 
     }
     catch(err){
